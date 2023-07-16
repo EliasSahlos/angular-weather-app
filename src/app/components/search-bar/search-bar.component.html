@@ -1,0 +1,15 @@
+<div class="flex justify-center items-center">
+  <input
+    class="rounded-l-md w-[200px] lg:w-[400px] h-[37px] p-4 outline-0 text-black shadow-md"
+    type="text"
+    placeholder="Enter City.."
+    [(ngModel)]="selectedCity"
+    (keyup.enter)="saveCity(); onButtonClick()">
+  <button
+    class="rounded-r-md bg-red-600 p-2 shadow-md lg:w-[50px] hover:bg-red-900"
+    type="submit"
+    (click)="saveCity(); onButtonClick()">
+    <fa-icon [icon]="faMagnifyingGlass" size="xl"></fa-icon>
+  </button>
+</div>
+
