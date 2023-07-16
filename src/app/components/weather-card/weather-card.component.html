@@ -9,22 +9,22 @@
         <span class="text-4xl ml-4">{{fahrenheitTemp | number: '1.0-0'}}</span><span class="mb-4 ml-1">°F</span>
       </ng-template>
     </div>
-    <div class="flex justify-center items-center text-[20px] my-2">
+    <div class="flex justify-center items-center text-[20px] mt-6">
       {{ weatherData?.desc | titlecase }}
     </div>
     <div class="flex justify-end align-bottom">
       <ng-container *ngIf="isTempCelsius else fahrenheitButton">
-        <button class="degrees-btn"
+        <button class="p-2 bg-purple-900 rounded shadow-md"
                 (click)="degreesButtonClickHandler(weatherData?.temp, weatherData?.temp_min, weatherData?.feels_like, weatherData?.temp_max, weatherData?.futureWeather[0]?.main?.temp)">
-          <span class="convert-to-text">Convert to</span>
-          <span class="degree-letter">°C</span>
+          Convert to :
+          <span class="ml-2 bg-purple-600 p-1 rounded">°C</span>
         </button>
       </ng-container>
       <ng-template #fahrenheitButton>
-        <button class="degrees-btn"
+        <button class="p-2 bg-purple-900 rounded shadow-md"
                 (click)="degreesButtonClickHandler(weatherData?.temp,weatherData?.temp_min,weatherData?.feels_like,weatherData?.temp_max,weatherData?.futureWeather[0]?.main?.temp)"><span
           class="convert-to-text">Convert to </span>
-          <span class="degree-letter">°F</span>
+          <span class="ml-2 bg-purple-600 p-1 rounded">°F</span>
         </button>
       </ng-template>
     </div>
