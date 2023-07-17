@@ -14,7 +14,6 @@ import {
   faTemperatureArrowUp,
 } from "@fortawesome/free-solid-svg-icons"
 import {TemperatureConversionService} from "../../services/temperature-conversion.service";
-import {WeatherData} from "../../../types/weatherData";
 
 
 @Component({
