@@ -14,6 +14,7 @@ import {
   faTemperatureArrowUp,
 } from "@fortawesome/free-solid-svg-icons"
 import {TemperatureConversionService} from "../../services/temperature-conversion.service";
+import {WeatherData} from "../../../types/weatherData";
 
 
 @Component({
@@ -32,7 +33,7 @@ export class WeatherCardComponent {
   minFahrenheitTemp: number = 0;
   feelsLikeFahrenheitTemp: number = 0;
   maxFahrenheitTemp: number = 0;
-  futureWeatherFahrenheitTemp: any
+  futureWeatherFahrenheitTemp: number = 0
 
   faCloudRain = faCloudRain;
   faCloudBolt = faCloudBolt;
@@ -64,7 +65,6 @@ export class WeatherCardComponent {
   }
 
   degreesButtonClickHandler(temp: any, temp_min: any, feels_like: any, temp_max: any, futureTemp: any) {
-    console.log(this.isTempCelsius)
     if (this.isTempCelsius) {
       this.fahrenheitTemp = this.temperatureConvertService.tempCelsiusToFahrenheit(temp)
       this.minFahrenheitTemp = this.temperatureConvertService.minTempCelsiusToFahrenheit(temp_min)

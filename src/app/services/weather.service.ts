@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {enviroment} from "../../enviroments/enviroment";
+import {WeatherData} from "../../types/weatherData";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class WeatherService {
       .pipe(map((res: any) => this.filterWeatherData(res)))
   }
 
-  private filterWeatherData(res: any) {
+  private filterWeatherData(res: any): WeatherData {
     let weatherIcon: string | null = this.weatherIconPicker(res)
     return {
       weatherIcon: weatherIcon,
@@ -35,7 +36,7 @@ export class WeatherService {
     }
   }
 
-  private weatherIconPicker(res: any) {
+  private weatherIconPicker(res: any): string | null {
     const weatherCondition = res['list'][0]['weather'][0]['main'];
     let weatherIcon: string = '';
 
@@ -62,7 +63,7 @@ export class WeatherService {
     return null
   }
 
-  private futureWeatherIconPicker(obj: any) {
+  private futureWeatherIconPicker(obj: any): string | null {
     const weatherCondition = obj.weather[0].main;
     let futureWeatherIcon: string = '';
 

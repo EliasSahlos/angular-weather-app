@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { WeatherService } from './services/weather.service';
+import {Component, OnInit} from '@angular/core';
+import {WeatherService} from './services/weather.service';
+import {WeatherData} from "../types/weatherData";
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,10 @@ import { WeatherService } from './services/weather.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService) {
+  }
 
-  weatherData: any = {};
+  weatherData: WeatherData = {} as WeatherData
   cityName: string = 'Athens';
 
   ngOnInit(): void {
