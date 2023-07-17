@@ -1,6 +1,6 @@
-<div class="grid grid-cols-8 gap-4 mt-8">
+<div class="grid md:grid-cols-8 sm:grid-cols-1 gap-2.5 mt-8 mx-4">
   <!--Block 1-->
-  <div class="col-start-2 col-end-8  rounded shadow-md p-4 bg-[#233149e6]">
+  <div class="md:col-start-2 md:col-end-8  rounded shadow-md p-4 bg-[#233149e6]">
     <div class="flex justify-center items-center" *ngIf="getWeatherIcon(weatherData?.weatherIcon)">
       <fa-icon [icon]="getWeatherIcon(weatherData?.weatherIcon)" size="4x"></fa-icon>
       <ng-container *ngIf="isTempCelsius else fahrenheitTempBlock">
@@ -53,7 +53,7 @@
     </div>
   </div>
   <!--Block 2-->
-  <div class="col-start-2 col-end-4 rounded shadow-md p-4 bg-[#233149e6]">
+  <div class="md:col-start-2 md:col-end-4 rounded shadow-md p-4 bg-[#233149e6]">
     <div class="flex justify-around items-center">
       <fa-icon [icon]="faDroplet" size="2x"></fa-icon>
       <fa-icon [icon]="faWind" size="2x" class="ml-2"></fa-icon>
@@ -66,7 +66,7 @@
     </div>
   </div>
   <!--Block 3-->
-  <div class="col-start-6 col-end-8 rounded shadow-md p-4 bg-[#233149e6]">
+  <div class="md:col-start-6 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6]">
     <div class="flex justify-around items-center">
       <fa-icon [icon]="faTemperatureArrowDown" size="2x"></fa-icon>
       <fa-icon [icon]="faTemperatureHalf" size="2x"></fa-icon>
@@ -88,7 +88,7 @@
     </ng-template>
   </div>
   <!--Block 4-->
-  <div class="col-start-2 col-end-8 rounded shadow-md p-4 bg-[#233149e6] flex justify-around items-center">
+  <div class="md:col-start-2 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6] flex justify-around items-center">
     <div *ngFor="let data of weatherData.futureWeather">
       <div>
         <fa-icon class="fa-icon" [icon]="getWeatherIcon(data?.weatherIcon)" size="2x"></fa-icon>
