@@ -7,11 +7,12 @@ import {
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from "rxjs/operators";
+import {ErrorHandlerService} from "./error-handler.service";
 
 @Injectable()
 export class ErrorCatchingInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(private errorHandlerService:ErrorHandlerService) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -27,6 +28,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
           errorMsg = `Error Code: ${error.status}, Message: ${error.message}`
         }
         console.log(errorMsg)
+        this.errorHandlerService.setErrorStatus(statusCode)
         return throwError(errorMsg)
       })
     )

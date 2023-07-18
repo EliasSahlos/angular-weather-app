@@ -5,14 +5,17 @@
       (searchButtonClick)="onButtonClicked()">
     </app-search-bar>
   </div>
-  <div *ngIf="cityName;">
-    <app-city-title cityName="Athens"></app-city-title>
+  <div *ngIf="cityName && errorCode === 0">
+    <div>
+      <app-city-title cityName="{{cityName}}"></app-city-title>
+    </div>
+
+    <div>
+      <app-weather-card [weatherData]="weatherData"></app-weather-card>
+    </div>
   </div>
-  <div *ngIf="!cityName">
-    <app-alert-box alertMessage="Please search for a city" alertTitle="Warning"></app-alert-box>
-  </div>
-  <div *ngIf="cityName">
-    <app-weather-card [weatherData]="weatherData"></app-weather-card>
+  <div *ngIf="!cityName || errorCode !== 0">
+    <app-alert-box [cityName]="cityName" [errorCode]="errorCode"></app-alert-box>
   </div>
 </div>
 
