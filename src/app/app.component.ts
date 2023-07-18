@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
 
   weatherData: WeatherData = {} as WeatherData
   cityName: string = 'Athens';
+  errorCode: any = 0
 
   ngOnInit(): void {
     this.getWeatherData();
