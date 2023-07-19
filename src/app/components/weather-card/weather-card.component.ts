@@ -13,7 +13,7 @@ import {
   faTemperatureHalf,
   faTemperatureArrowUp,
 } from "@fortawesome/free-solid-svg-icons"
-import {TemperatureConversionService} from "../../services/temperature-conversion.service";
+import {TemperatureConversionService} from "../../services/temperature-conversion/temperature-conversion.service";
 
 
 @Component({

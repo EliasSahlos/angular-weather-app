@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {faInfo} from "@fortawesome/free-solid-svg-icons/faInfo";
-import {AlertBoxHandlerService} from "../../services/alert-box-handler.service";
+import {AlertBoxHandlerService} from "../../services/alert-box-handler/alert-box-handler.service";
 
 @Component({
   selector: 'app-alert-box',

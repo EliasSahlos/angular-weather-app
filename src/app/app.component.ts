@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {WeatherService} from './services/weather.service';
+import {WeatherService} from './services/weather/weather.service';
 import {WeatherData} from "../types/weatherData";
-import {ErrorHandlerService} from "./services/error-handler.service";
+import {ErrorHandlerService} from "./services/error-handler/error-handler.service";
+import {SaveCityTriggerService} from "./services/save-city-trigger/save-city-trigger.service";
+import {SaveCityService} from "./services/save-city/save-city.service";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,13 @@ import {ErrorHandlerService} from "./services/error-handler.service";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private weatherService: WeatherService, private errorHandlerService: ErrorHandlerService) {
+  constructor
+  (
+    private weatherService: WeatherService,
+    private errorHandlerService: ErrorHandlerService,
+    private saveCityTriggerService: SaveCityTriggerService,
+    private saveCityService: SaveCityService,
+  ) {
   }
 
   weatherData: WeatherData = {} as WeatherData
@@ -20,6 +28,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWeatherData();
+    this.saveCityTriggerService.saveCity$.subscribe(() => {
+      this.saveCityHandler()
+    })
   }
 
   getWeatherData() {
@@ -48,5 +59,11 @@ export class AppComponent implements OnInit {
   onButtonClicked() {
     this.getWeatherData();
     this.errorCode = 0
+  }
+
+  saveCityHandler() {
+    console.log("CITY SAVED")
+    this.saveCityService.addCityToArr(this.weatherData,this.cityName)
+    console.log('SAVED CITIES :',this.saveCityService.getCities())
   }
 }

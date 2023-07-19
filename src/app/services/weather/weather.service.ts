@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {enviroment} from "../../enviroments/enviroment";
-import {WeatherData} from "../../types/weatherData";
+import {enviroment} from "../../../enviroments/enviroment";
+import {WeatherData} from "../../../types/weatherData";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,7 @@ export class WeatherService {
         weatherIcon: this.futureWeatherIconPicker(futureObj)
       }))
     }
+
   }
 
   private weatherIconPicker(res: any): string | null {

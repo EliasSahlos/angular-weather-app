@@ -11,7 +11,7 @@ import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {WeatherCardComponent} from './components/weather-card/weather-card.component';
 import {CityTitleComponent} from './components/city-title/city-title.component';
 import {AlertBoxComponent} from './components/alert-box/alert-box.component';
-import {ErrorCatchingInterceptor} from "./services/error-catching.interceptor";
+import {ErrorCatchingInterceptor} from "./services/error-catching-interceptor/error-catching.interceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { SaveCityButtonComponent } from './components/save-city-button/save-city-button.component';
