@@ -5,7 +5,7 @@
       (searchButtonClick)="onButtonClicked()">
     </app-search-bar>
   </div>
-  <div *ngIf="cityName && errorCode === 0">
+  <div *ngIf="cityName && errorCode === 0 && !isLoading">
     <div>
       <app-city-title cityName="{{cityName}}"></app-city-title>
     </div>
@@ -14,6 +14,11 @@
       <app-weather-card [weatherData]="weatherData"></app-weather-card>
     </div>
   </div>
+  <ng-template [ngIf]="isLoading">
+    <div class="flex justify-center items-center mt-8">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  </ng-template>
   <div *ngIf="!cityName || errorCode !== 0">
     <app-alert-box [cityName]="cityName" [errorCode]="errorCode"></app-alert-box>
   </div>

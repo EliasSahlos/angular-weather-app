@@ -12,6 +12,7 @@ import {WeatherCardComponent} from './components/weather-card/weather-card.compo
 import {CityTitleComponent} from './components/city-title/city-title.component';
 import {AlertBoxComponent} from './components/alert-box/alert-box.component';
 import {ErrorCatchingInterceptor} from "./services/error-catching.interceptor";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {ErrorCatchingInterceptor} from "./services/error-catching.interceptor";
     SearchBarComponent,
     WeatherCardComponent,
     CityTitleComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import {ErrorCatchingInterceptor} from "./services/error-catching.interceptor";
     HttpClientModule,
     FormsModule,
     MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

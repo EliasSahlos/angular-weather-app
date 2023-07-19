@@ -15,22 +15,27 @@ export class AppComponent implements OnInit {
   weatherData: WeatherData = {} as WeatherData
   cityName: string = '';
   errorCode: any = 0
+  isLoading: boolean = false
 
   ngOnInit(): void {
     this.getWeatherData();
   }
 
   getWeatherData() {
+
     if (this.cityName != '') {
+      this.isLoading = true
       this.weatherService
         .weatherAPICall(`${this.cityName}`)
         .subscribe((data) => {
           this.weatherData = data;
           console.log(data);
           this.errorCode = 0;
+          this.isLoading = false
         }, (error) => {
           this.errorCode = this.errorHandlerService.getErrorStatus();
           this.cityName = '';
+          this.isLoading = false
         });
     }
   }
