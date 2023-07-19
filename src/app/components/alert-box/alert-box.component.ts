@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {faInfo} from "@fortawesome/free-solid-svg-icons/faInfo";
+import {AlertBoxHandlerService} from "../../services/alert-box-handler.service";
 
 @Component({
   selector: 'app-alert-box',
@@ -7,24 +8,27 @@ import {faInfo} from "@fortawesome/free-solid-svg-icons/faInfo";
   styleUrls: ['./alert-box.component.css']
 })
 export class AlertBoxComponent implements OnInit {
-  alertTitle: string = ''
-  alertMessage: string = ''
-  @Input() errorCode: number = 0
-  @Input() cityName: string = ''
-  faInfo = faInfo
+  constructor(private alertBoxHandlerService: AlertBoxHandlerService) {}
+
+  alertTitle: string = '';
+  alertMessage: string = '';
+  isError: boolean = false
+  @Input() errorCode: number = 0;
+  @Input() cityName: string = '';
+  faInfo = faInfo;
 
   ngOnInit(): void {
-    this.getErrorStatus()
+    this.updateAlert();
   }
 
-  getErrorStatus() {
-    if(this.cityName === ''){
-      this.alertTitle = 'Warning'
-      this.alertMessage = 'Please search for a city..'
-    }
-    if(this.errorCode === 404){
-      this.alertTitle = 'Error'
-      this.alertMessage = 'Please enter a valid city..'
-    }
+  ngOnChanges(): void {
+    this.updateAlert();
+  }
+
+  updateAlert(): void {
+    this.alertBoxHandlerService.setErrorStatus(this.cityName, this.errorCode);
+    this.alertTitle = this.alertBoxHandlerService.getAlertTitle();
+    this.alertMessage = this.alertBoxHandlerService.getAlertMessage();
+    this.isError = this.alertBoxHandlerService.getIsError()
   }
 }
