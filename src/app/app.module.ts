@@ -13,6 +13,8 @@ import {CityTitleComponent} from './components/city-title/city-title.component';
 import {AlertBoxComponent} from './components/alert-box/alert-box.component';
 import {ErrorCatchingInterceptor} from "./services/error-catching.interceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { SaveCityButtonComponent } from './components/save-city-button/save-city-button.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     WeatherCardComponent,
     CityTitleComponent,
     AlertBoxComponent,
+    SaveCityButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
   providers: [
     {

@@ -1,3 +1,9 @@
-<div class="flex justify-center items-center">
-  <span class="text-3xl text-center p-2 w-[350px] rounded shadow-md bg-[#324669]/60">{{cityName | titlecase}}</span>
+<div class="flex justify-center items-center relative">
+  <div class="relative text-3xl text-center p-2 w-[350px] rounded shadow-md bg-[#324669]/60">
+    {{cityName | titlecase}}
+    <div class="absolute right-2 bottom-2">
+      <app-save-city-button></app-save-city-button>
+    </div>
+  </div>
+
 </div>
