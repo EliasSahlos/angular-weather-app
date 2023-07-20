@@ -1,7 +1,7 @@
 <div *ngFor="let city of savedCities">
   <div class="grid grid-cols-3 gap-2  bg-purple-950 rounded shadow-md p-1 mx-1 my-2 relative">
     <div class="flex flex-col justify-center items-center">
-      <fa-icon [icon]="getWeatherIconFromService(city.weatherIcon)" size="2x"></fa-icon>
+      <fa-icon class="mb-1" [icon]="getWeatherIconFromService(city.weatherIcon)" size="2x"></fa-icon>
       {{city.temp}}°C
     </div>
     <div class="flex justify-center items-center mt-4 ml-4">
