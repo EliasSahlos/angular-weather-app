@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false
   savedCities: any = []
   faBookmark = faBookmark
-  isSavedCitiesBlockOpen:boolean = false
+  isSavedCitiesBlockOpen:boolean = true
 
   ngOnInit(): void {
     this.getWeatherData();

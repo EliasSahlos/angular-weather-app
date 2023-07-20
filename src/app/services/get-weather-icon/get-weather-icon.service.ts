@@ -20,7 +20,7 @@ export class GetWeatherIconService {
   faSun = faSun;
   faCloud = faCloud;
 
-  getWeatherIcon(weatherIcon: string) {
+  getWeatherIcon(weatherIcon: string | null) {
     switch (weatherIcon) {
       case 'faCloudRain':
         return faCloudRain;

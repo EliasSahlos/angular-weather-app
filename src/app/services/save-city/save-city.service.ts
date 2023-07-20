@@ -16,7 +16,8 @@ export class SaveCityService {
     console.log('ADDED CITY TO ARR')
   }
 
-  removeCityFromArr(){
+  removeCityFromArr(city:any){
+    this.savedCities.pop()
     console.log('REMOVED CITY FROM ARR')
   }
 
