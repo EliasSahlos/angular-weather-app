@@ -15,6 +15,7 @@ import {ErrorCatchingInterceptor} from "./services/error-catching-interceptor/er
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { SaveCityButtonComponent } from './components/save-city-button/save-city-button.component';
+import { SavedCitiesCardComponent } from './components/saved-cities-card/saved-cities-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SaveCityButtonComponent } from './components/save-city-button/save-city
     CityTitleComponent,
     AlertBoxComponent,
     SaveCityButtonComponent,
+    SavedCitiesCardComponent,
   ],
   imports: [
     BrowserModule,
