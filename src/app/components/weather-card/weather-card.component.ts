@@ -14,6 +14,7 @@ import {
   faTemperatureArrowUp,
 } from "@fortawesome/free-solid-svg-icons"
 import {TemperatureConversionService} from "../../services/temperature-conversion/temperature-conversion.service";
+import {GetWeatherIconService} from "../../services/get-weather-icon/get-weather-icon.service";
 
 
 @Component({
@@ -22,7 +23,7 @@ import {TemperatureConversionService} from "../../services/temperature-conversio
   styleUrls: ['./weather-card.component.css']
 })
 export class WeatherCardComponent {
-  constructor(private temperatureConvertService: TemperatureConversionService) {
+  constructor(private temperatureConvertService: TemperatureConversionService,private getWeatherIconService: GetWeatherIconService) {
   }
 
   @Input() weatherData: any
@@ -47,20 +48,7 @@ export class WeatherCardComponent {
   faTemperatureArrowUp = faTemperatureArrowUp;
 
   getWeatherIcon(weatherIcon: string): any {
-    switch (weatherIcon) {
-      case 'faCloudRain':
-        return faCloudRain;
-      case 'faCloudBolt':
-        return faCloudBolt;
-      case 'faSnowFlake':
-        return faSnowflake;
-      case 'faSun':
-        return faSun;
-      case 'faCloud':
-        return faCloud;
-      default:
-        return null
-    }
+    return this.getWeatherIconService.getWeatherIcon(weatherIcon)
   }
 
   degreesButtonClickHandler(temp: any, temp_min: any, feels_like: any, temp_max: any, futureTemp: any) {
