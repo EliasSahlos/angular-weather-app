@@ -1,10 +1,13 @@
 <div class="bg-customBG bg-cover w-full min-h-screen p-2 ">
   <div class="flex flex-row">
-    <div class="flex justify-around w-[20%] h-screen bg-black/40 rounded">
+    <div *ngIf="isSavedCitiesBlockOpen" class="flex justify-around w-[20%] h-screen bg-black/40 rounded">
       <app-saved-cities-card></app-saved-cities-card>
     </div>
-    <div class="w-[80%]">
+    <div class="w-full relative">
       <div class="py-4">
+        <button (click)="savedCitiesButtonHandler()" class="absolute ml-1 bg-purple-700 rounded shadow-md- p-2">
+          <fa-icon [icon]="faBookmark"></fa-icon>
+        </button>
         <app-search-bar
           (onSelectedCity)="receiveSelectedCity($event)"
           (searchButtonClick)="onButtonClicked()">

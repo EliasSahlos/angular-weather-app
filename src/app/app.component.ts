@@ -4,6 +4,7 @@ import {WeatherData} from "../types/weatherData";
 import {ErrorHandlerService} from "./services/error-handler/error-handler.service";
 import {SaveCityTriggerService} from "./services/save-city-trigger/save-city-trigger.service";
 import {SaveCityService} from "./services/save-city/save-city.service";
+import {faBookmark} from "@fortawesome/free-solid-svg-icons/faBookmark";
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit {
   errorCode: any = 0
   isLoading: boolean = false
   savedCities: any = []
+  faBookmark = faBookmark
+  isSavedCitiesBlockOpen:boolean = false
 
   ngOnInit(): void {
     this.getWeatherData();
@@ -65,5 +68,9 @@ export class AppComponent implements OnInit {
     console.log("CITY SAVED")
     this.saveCityService.addCityToArr(this.weatherData,this.cityName)
     console.log('SAVED CITIES :',this.saveCityService.getCities())
+  }
+
+  savedCitiesButtonHandler(){
+    this.isSavedCitiesBlockOpen = !this.isSavedCitiesBlockOpen
   }
 }
