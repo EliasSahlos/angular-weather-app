@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SaveCityService} from "../../services/save-city/save-city.service";
 import {
   faCloudRain,
@@ -16,10 +16,11 @@ import {GetWeatherIconService} from "../../services/get-weather-icon/get-weather
   styleUrls: ['./saved-cities-card.component.css']
 })
 export class SavedCitiesCardComponent implements OnInit {
-  constructor(private saveCityService: SaveCityService,private getWeatherIconService: GetWeatherIconService) {
+  constructor(private saveCityService: SaveCityService, private getWeatherIconService: GetWeatherIconService) {
   }
 
   savedCities: any = []
+  @Input() mobileView: boolean = false
   faCloudRain = faCloudRain;
   faCloudBolt = faCloudBolt;
   faSnowFlake = faSnowflake;
@@ -35,12 +36,20 @@ export class SavedCitiesCardComponent implements OnInit {
     this.savedCities = this.saveCityService.getCities()
   }
 
-  getWeatherIconFromService(weatherIcon: string):any{
+  getWeatherIconFromService(weatherIcon: string): any {
     return this.getWeatherIconService.getWeatherIcon(weatherIcon)
   }
 
-  removeCitiesButtonHandler(city: any){
+  removeCitiesButtonHandler(city: any) {
     this.saveCityService.removeCityFromArr(city)
   }
 
+  getSavedCitiesCardStyle(){
+    if(this.mobileView){
+      return 'grid grid-cols-3 gap-2  bg-purple-950 rounded shadow-md p-1 mx-1 my-2 relative'
+    }
+    else {
+      return 'grid grid-cols-3 gap-2  bg-purple-950 rounded shadow-md p-1 mx-1 my-2 relative'
+    }
+  }
 }

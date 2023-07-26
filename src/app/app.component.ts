@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {WeatherService} from './services/weather/weather.service';
 import {WeatherData} from "../types/weatherData";
 import {ErrorHandlerService} from "./services/error-handler/error-handler.service";
@@ -27,13 +27,24 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false
   savedCities: any = []
   faBookmark = faBookmark
-  isSavedCitiesBlockOpen:boolean = true
+  isSavedCitiesBlockOpen: boolean = true
+  screenWidth: number = 0
+  mobileView: boolean = false
 
   ngOnInit(): void {
+    this.onResize()
     this.getWeatherData();
     this.saveCityTriggerService.saveCity$.subscribe(() => {
       this.saveCityHandler()
     })
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenWidth = event ? event.target.innerWidth : window.innerWidth;
+    this.mobileViewHandler()
+    console.log(this.screenWidth)
+    console.log("Mobile view",this.mobileView)
   }
 
   getWeatherData() {
@@ -66,11 +77,28 @@ export class AppComponent implements OnInit {
 
   saveCityHandler() {
     console.log("CITY SAVED")
-    this.saveCityService.addCityToArr(this.weatherData,this.cityName)
-    console.log('SAVED CITIES :',this.saveCityService.getCities())
+    this.saveCityService.addCityToArr(this.weatherData, this.cityName)
+    console.log('SAVED CITIES :', this.saveCityService.getCities())
   }
 
-  savedCitiesButtonHandler(){
+  savedCitiesButtonHandler() {
     this.isSavedCitiesBlockOpen = !this.isSavedCitiesBlockOpen
+  }
+
+  mobileViewHandler() {
+    if (this.screenWidth > 480) {
+      this.mobileView = false
+    } else {
+      this.mobileView = true
+    }
+  }
+
+  getSavedCitiesBlockStyle() {
+    if(this.mobileView){
+      return 'w-[0%]'
+    }
+    else {
+      return 'w-[20%]'
+    }
   }
 }

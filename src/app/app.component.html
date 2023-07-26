@@ -1,11 +1,18 @@
-<div class="bg-customBG bg-cover w-full min-h-screen p-2 ">
+<div class="bg-customBG bg-cover w-full min-h-screen">
   <div class="flex flex-row">
-    <div *ngIf="isSavedCitiesBlockOpen" class="w-[20%] h-screen bg-black/40 rounded">
-      <app-saved-cities-card></app-saved-cities-card>
+    <div *ngIf="isSavedCitiesBlockOpen" [ngClass]="getSavedCitiesBlockStyle()">
+      <div *ngIf="!mobileView" class="h-screen bg-black/40 rounded">
+        <app-saved-cities-card [mobileView]="mobileView"></app-saved-cities-card>
+      </div>
+      <div *ngIf="mobileView">
+        <div class="bg-black/90 top:0 left-0 absolute w-full h-full z-10">
+          <app-saved-cities-card [mobileView]="mobileView"></app-saved-cities-card>
+        </div>
+      </div>
     </div>
     <div class="w-full relative">
-      <div class="py-4">
-        <button (click)="savedCitiesButtonHandler()" class="absolute ml-1 bg-purple-700 rounded shadow-md- p-2">
+      <div class="py-4 ">
+        <button (click)="savedCitiesButtonHandler()" class="absolute ml-1 bg-purple-700 rounded shadow-md- p-2 z-20">
           <fa-icon [icon]="faBookmark"></fa-icon>
         </button>
         <app-search-bar
