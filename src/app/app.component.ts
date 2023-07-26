@@ -5,7 +5,8 @@ import {ErrorHandlerService} from "./services/error-handler/error-handler.servic
 import {SaveCityTriggerService} from "./services/save-city-trigger/save-city-trigger.service";
 import {SaveCityService} from "./services/save-city/save-city.service";
 import {faBookmark} from "@fortawesome/free-solid-svg-icons/faBookmark";
-
+import {MobileViewFinderService} from "./services/mobile-view-finder/mobile-view-finder.service";
+import {fromEvent} from "rxjs";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +19,12 @@ export class AppComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService,
     private saveCityTriggerService: SaveCityTriggerService,
     private saveCityService: SaveCityService,
+    private mobileViewFinderService: MobileViewFinderService
   ) {
+    fromEvent(window,'resize').subscribe((event) => {
+      mobileViewFinderService.mobileViewChecker(event)
+      this.mobileView = this.mobileViewFinderService.getMobileViewValue()
+    })
   }
 
   weatherData: WeatherData = {} as WeatherData
@@ -32,23 +38,15 @@ export class AppComponent implements OnInit {
   mobileView: boolean = false
 
   ngOnInit(): void {
-    this.onResize()
+    this.mobileViewFinderService.mobileViewChecker()
+    this.mobileView = this.mobileViewFinderService.getMobileViewValue()
     this.getWeatherData();
     this.saveCityTriggerService.saveCity$.subscribe(() => {
       this.saveCityHandler()
     })
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: any) {
-    this.screenWidth = event ? event.target.innerWidth : window.innerWidth;
-    this.mobileViewHandler()
-    console.log(this.screenWidth)
-    console.log("Mobile view",this.mobileView)
-  }
-
   getWeatherData() {
-
     if (this.cityName != '') {
       this.isLoading = true
       this.weatherService
@@ -83,14 +81,6 @@ export class AppComponent implements OnInit {
 
   savedCitiesButtonHandler() {
     this.isSavedCitiesBlockOpen = !this.isSavedCitiesBlockOpen
-  }
-
-  mobileViewHandler() {
-    if (this.screenWidth > 480) {
-      this.mobileView = false
-    } else {
-      this.mobileView = true
-    }
   }
 
   getSavedCitiesBlockStyle() {
