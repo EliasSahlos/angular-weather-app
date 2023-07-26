@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false
   savedCities: any = []
   faBookmark = faBookmark
-  isSavedCitiesBlockOpen: boolean = true
+  isSavedCitiesBlockOpen: boolean = false
   screenWidth: number = 0
   mobileView: boolean = false
 
