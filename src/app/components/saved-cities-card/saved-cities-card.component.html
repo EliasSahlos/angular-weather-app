@@ -1,4 +1,4 @@
-<div *ngFor="let city of savedCities">
+<div *ngFor="let city of savedCities;let index = index">
   <div class="grid grid-cols-3 gap-2  bg-purple-950 rounded shadow-md p-1 mx-1 my-2 relative">
     <div class="flex flex-col justify-center items-center">
       <fa-icon class="mb-1" [icon]="getWeatherIconFromService(city.weatherIcon)" size="2x"></fa-icon>
@@ -8,7 +8,7 @@
       <h2>{{city.cityName | titlecase}}</h2>
     </div>
     <div class="flex justify-end items-center">
-      <button (click)="removeCitiesButtonHandler(city)"
+      <button (click)="removeCitiesButtonHandler(city,index)"
               class="bg-red-600 mr-2 p-2 rounded shadow-md hover:bg-red-800 hover:cursor-pointer">
         <fa-icon [icon]="faTrash"></fa-icon>
       </button>

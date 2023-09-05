@@ -40,8 +40,8 @@ export class SavedCitiesCardComponent implements OnInit {
     return this.getWeatherIconService.getWeatherIcon(weatherIcon)
   }
 
-  removeCitiesButtonHandler(city: any) {
-    this.saveCityService.removeCityFromArr(city)
+  removeCitiesButtonHandler(city: any,index: number) {
+    this.saveCityService.removeCityFromArr(city,index)
   }
 
   getSavedCitiesCardStyle(){
