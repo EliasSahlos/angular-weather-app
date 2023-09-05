@@ -19,7 +19,7 @@ export class MobileViewFinderService {
   }
 
   private mobileViewHandler() {
-    if (this.screenWidth > 480) {
+    if (this.screenWidth > 500) {
       this.mobileView = false
     } else {
       this.mobileView = true
