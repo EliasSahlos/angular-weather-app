@@ -1,111 +1,108 @@
 <div class="grid md:grid-cols-8 sm:grid-cols-1 gap-2.5 mt-8 mx-4">
-  <!--Block 1-->
-  <div class="md:col-start-2 md:col-end-8  rounded shadow-md p-4 bg-[#233149e6]">
-    <div class="flex justify-center items-center" *ngIf="getWeatherIcon(weatherData?.weatherIcon)">
-      <fa-icon [icon]="getWeatherIcon(weatherData?.weatherIcon)" size="4x"></fa-icon>
-      <ng-container *ngIf="isTempCelsius else fahrenheitTempBlock">
-        <span class="text-4xl ml-4">{{weatherData?.temp | number: '1.0-0'}}</span><span class="mb-4 ml-1">°C</span>
-      </ng-container>
-      <ng-template #fahrenheitTempBlock>
-        <span class="text-4xl ml-4">{{fahrenheitTemp | number: '1.0-0'}}</span><span class="mb-4 ml-1">°F</span>
-      </ng-template>
-    </div>
-    <div class="flex justify-center items-center text-[20px] mt-6">
-      {{ weatherData?.desc | titlecase }}
-    </div>
-    <div class="flex justify-end align-bottom">
-      <!--Desktop Design-->
-      <div class="hidden sm:block lg:block">
-        <ng-container *ngIf="isTempCelsius else desktopFahrenheitButton">
-          <button
-            class="p-2 bg-purple-900 rounded shadow-md"
-            (click)="degreesButtonClickHandler(weatherData?.temp, weatherData?.temp_min, weatherData?.feels_like, weatherData?.temp_max, weatherData?.futureWeather[0]?.main?.temp)">
-            Convert to :
-            <span class="ml-2 bg-purple-600 p-1 rounded">°C</span>
-          </button>
-        </ng-container>
-        <ng-template #desktopFahrenheitButton>
-          <button
-            class="p-2 bg-purple-900 rounded shadow-md"
-            (click)="degreesButtonClickHandler(weatherData?.temp,weatherData?.temp_min,weatherData?.feels_like,weatherData?.temp_max,weatherData?.futureWeather[0]?.main?.temp)"><span
-            class="convert-to-text">Convert to </span>
-            <span class="ml-2 bg-purple-600 p-1 rounded">°F</span>
-          </button>
-        </ng-template>
-      </div>
-      <!--Mobile Design-->
-      <div class="block sm:hidden">
-        <ng-container *ngIf="isTempCelsius else mobileFahrenheitButton">
-          <button
-            class="p-2 rounded shadow-md"
-            (click)="degreesButtonClickHandler(weatherData?.temp, weatherData?.temp_min, weatherData?.feels_like, weatherData?.temp_max, weatherData?.futureWeather[0]?.main?.temp)">
-            <span class="ml-2 bg-purple-600 p-2 rounded">°C</span>
-          </button>
-        </ng-container>
-        <ng-template #mobileFahrenheitButton>
-          <button
-            class="p-2 rounded shadow-md"
-            (click)="degreesButtonClickHandler(weatherData?.temp,weatherData?.temp_min,weatherData?.feels_like,weatherData?.temp_max,weatherData?.futureWeather[0]?.main?.temp)">
-            <span class="ml-2 bg-purple-600 p-2 rounded">°F</span>
-          </button>
-        </ng-template>
-      </div>
-    </div>
-  </div>
-  <!--Block 2-->
-  <div class="md:col-start-2 md:col-end-4 rounded shadow-md p-4 bg-[#233149e6]">
-    <div class="flex justify-around items-center mt-4">
-      <fa-icon [icon]="faDroplet" size="2x"></fa-icon>
-      <fa-icon [icon]="faWind" size="2x" class="ml-2"></fa-icon>
-      <fa-icon [icon]="faArrowsUpDownLeftRight" size="2x"></fa-icon>
-    </div>
-    <div class="flex justify-around items-center mt-4 text-[15px]">
-      <p>{{weatherData?.humidity | number: '1.0-0'}}%</p>
-      <p> {{weatherData?.wind_speed | number: '1.0-0'}}km/h</p>
-      <p class="ml-2">{{weatherData?.wind_deg | number: '1.0-0'}}°</p>
-    </div>
-  </div>
-  <!--Block 3-->
-  <div class="md:col-start-6 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6]">
-    <div class="flex justify-around items-center mt-4">
-      <fa-icon [icon]="faTemperatureArrowDown" size="2x"></fa-icon>
-      <fa-icon [icon]="faTemperatureHalf" size="2x"></fa-icon>
-      <fa-icon [icon]="faTemperatureArrowUp" size="2x"></fa-icon>
-    </div>
-    <ng-container *ngIf="isTempCelsius else fahrenheitInfoBlock">
-      <div class="flex justify-around items-center mt-4 text-[15px]">
-        <p>{{weatherData?.temp_min | number: '1.0-0'}}°C</p>
-        <p>{{weatherData?.feels_like | number: '1.0-0'}}°C</p>
-        <p>{{weatherData?.temp_max | number: '1.0-0'}}°C</p>
-      </div>
-    </ng-container>
-    <ng-template #fahrenheitInfoBlock>
-      <div class="flex justify-around items-center mt-4 text-[15px]">
-        <p>{{minFahrenheitTemp | number: '1.0-0'}}°F</p>
-        <p>{{feelsLikeFahrenheitTemp | number: '1.0-0'}}°F</p>
-        <p>{{maxFahrenheitTemp | number: '1.0-0'}}°F</p>
-      </div>
-    </ng-template>
-  </div>
-  <!--Block 4-->
-  <div class="md:col-start-2 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6] flex justify-around items-center">
-    <div *ngFor="let data of weatherData.futureWeather">
-      <div>
-        <fa-icon class="fa-icon" [icon]="getWeatherIcon(data?.weatherIcon)" size="2x"></fa-icon>
-      </div>
-      <ng-container *ngIf="isTempCelsius else fahrenheitFutureWeatherBlock">
-        <div class="my-2">
-          {{data?.main?.temp | number: '1.0-0'}}°C
+    <!--Block 1-->
+    <div class="md:col-start-2 md:col-end-8  rounded shadow-md p-4 bg-[#233149e6]">
+        <div class="flex justify-center items-center" *ngIf="getWeatherIcon(weatherData?.weatherIcon)">
+            <fa-icon [icon]="getWeatherIcon(weatherData?.weatherIcon)" size="4x"></fa-icon>
+            <ng-container *ngIf="isTempCelsius else fahrenheitTempBlock">
+                <span class="text-4xl ml-4">{{weatherData?.temp | number: '1.0-0'}}</span><span
+                    class="mb-4 ml-1">°C</span>
+            </ng-container>
+            <ng-template #fahrenheitTempBlock>
+                <span class="text-4xl ml-4">{{fahrenheitTemp | number: '1.0-0'}}</span><span class="mb-4 ml-1">°F</span>
+            </ng-template>
         </div>
-      </ng-container>
-      <ng-template #fahrenheitFutureWeatherBlock>
-        <div class="my-2 ">
-          {{futureWeatherFahrenheitTemp | number: '1.0-0'}}°F
+        <div class="flex justify-center items-center text-[20px] mt-6">
+            {{ weatherData?.desc | titlecase }}
         </div>
-      </ng-template>
-      <div>
-        {{data?.dt_txt.slice(11, 16)}}
-      </div>
+        <div class="flex justify-end align-bottom">
+            <!--Desktop Design-->
+            <div class="hidden sm:block lg:block">
+                <ng-container *ngIf="isTempCelsius else desktopFahrenheitButton">
+                    <button class="p-2 bg-purple-900 rounded shadow-md"
+                        (click)="degreesButtonClickHandler(weatherData?.temp, weatherData?.temp_min, weatherData?.feels_like, weatherData?.temp_max, weatherData?.futureWeather[0]?.main?.temp)">
+                        Convert to :
+                        <span class="ml-2 bg-purple-600 p-1 rounded">°F</span>
+                    </button>
+                </ng-container>
+                <ng-template #desktopFahrenheitButton>
+                    <button class="p-2 bg-purple-900 rounded shadow-md"
+                        (click)="degreesButtonClickHandler(weatherData?.temp,weatherData?.temp_min,weatherData?.feels_like,weatherData?.temp_max,weatherData?.futureWeather[0]?.main?.temp)"><span
+                            class="convert-to-text">Convert to </span>
+                        <span class="ml-2 bg-purple-600 p-1 rounded">°C</span>
+                    </button>
+                </ng-template>
+            </div>
+            <!--Mobile Design-->
+            <div class="block sm:hidden">
+                <ng-container *ngIf="isTempCelsius else mobileFahrenheitButton">
+                    <button class="p-2 rounded shadow-md"
+                        (click)="degreesButtonClickHandler(weatherData?.temp, weatherData?.temp_min, weatherData?.feels_like, weatherData?.temp_max, weatherData?.futureWeather[0]?.main?.temp)">
+                        <span class="ml-2 bg-purple-600 p-2 rounded">°F</span>
+                    </button>
+                </ng-container>
+                <ng-template #mobileFahrenheitButton>
+                    <button class="p-2 rounded shadow-md"
+                        (click)="degreesButtonClickHandler(weatherData?.temp,weatherData?.temp_min,weatherData?.feels_like,weatherData?.temp_max,weatherData?.futureWeather[0]?.main?.temp)">
+                        <span class="ml-2 bg-purple-600 p-2 rounded">°C</span>
+                    </button>
+                </ng-template>
+            </div>
+        </div>
     </div>
-  </div>
+    <!--Block 2-->
+    <div class="md:col-start-2 md:col-end-4 rounded shadow-md p-4 bg-[#233149e6]">
+        <div class="flex justify-around items-center mt-4">
+            <fa-icon [icon]="faDroplet" size="2x"></fa-icon>
+            <fa-icon [icon]="faWind" size="2x" class="ml-2"></fa-icon>
+            <fa-icon [icon]="faArrowsUpDownLeftRight" size="2x"></fa-icon>
+        </div>
+        <div class="flex justify-around items-center mt-4 text-[15px]">
+            <p>{{weatherData?.humidity | number: '1.0-0'}}%</p>
+            <p> {{weatherData?.wind_speed | number: '1.0-0'}}km/h</p>
+            <p class="ml-2">{{weatherData?.wind_deg | number: '1.0-0'}}°</p>
+        </div>
+    </div>
+    <!--Block 3-->
+    <div class="md:col-start-6 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6]">
+        <div class="flex justify-around items-center mt-4">
+            <fa-icon [icon]="faTemperatureArrowDown" size="2x"></fa-icon>
+            <fa-icon [icon]="faTemperatureHalf" size="2x"></fa-icon>
+            <fa-icon [icon]="faTemperatureArrowUp" size="2x"></fa-icon>
+        </div>
+        <ng-container *ngIf="isTempCelsius else fahrenheitInfoBlock">
+            <div class="flex justify-around items-center mt-4 text-[15px]">
+                <p>{{weatherData?.temp_min | number: '1.0-0'}}°C</p>
+                <p>{{weatherData?.feels_like | number: '1.0-0'}}°C</p>
+                <p>{{weatherData?.temp_max | number: '1.0-0'}}°C</p>
+            </div>
+        </ng-container>
+        <ng-template #fahrenheitInfoBlock>
+            <div class="flex justify-around items-center mt-4 text-[15px]">
+                <p>{{minFahrenheitTemp | number: '1.0-0'}}°F</p>
+                <p>{{feelsLikeFahrenheitTemp | number: '1.0-0'}}°F</p>
+                <p>{{maxFahrenheitTemp | number: '1.0-0'}}°F</p>
+            </div>
+        </ng-template>
+    </div>
+    <!--Block 4-->
+    <div class="md:col-start-2 md:col-end-8 rounded shadow-md p-4 bg-[#233149e6] flex justify-around items-center">
+        <div *ngFor="let data of weatherData.futureWeather">
+            <div>
+                <fa-icon class="fa-icon" [icon]="getWeatherIcon(data?.weatherIcon)" size="2x"></fa-icon>
+            </div>
+            <ng-container *ngIf="isTempCelsius else fahrenheitFutureWeatherBlock">
+                <div class="my-2">
+                    {{data?.main?.temp | number: '1.0-0'}}°C
+                </div>
+            </ng-container>
+            <ng-template #fahrenheitFutureWeatherBlock>
+                <div class="my-2 ">
+                    {{futureWeatherFahrenheitTemp | number: '1.0-0'}}°F
+                </div>
+            </ng-template>
+            <div>
+                {{data?.dt_txt.slice(11, 16)}}
+            </div>
+        </div>
+    </div>
 </div>
