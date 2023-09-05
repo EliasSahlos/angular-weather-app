@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {WeatherService} from './services/weather/weather.service';
-import {WeatherData} from "../types/weatherData";
+import {SavedCities, WeatherData} from "../types/weatherData";
 import {ErrorHandlerService} from "./services/error-handler/error-handler.service";
 import {SaveCityTriggerService} from "./services/save-city-trigger/save-city-trigger.service";
 import {SaveCityService} from "./services/save-city/save-city.service";
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   cityName: string = '';
   errorCode: any = 0
   isLoading: boolean = false
-  savedCities: any = []
+  savedCities: SavedCities[] = []
   faBookmark = faBookmark
   isSavedCitiesBlockOpen: boolean = false
   screenWidth: number = 0

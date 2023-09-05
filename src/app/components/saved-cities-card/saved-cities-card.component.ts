@@ -9,6 +9,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons"
 import {GetWeatherIconService} from "../../services/get-weather-icon/get-weather-icon.service";
+import { SavedCities } from 'src/types/weatherData';
 
 @Component({
   selector: 'app-saved-cities-card',
@@ -19,7 +20,7 @@ export class SavedCitiesCardComponent implements OnInit {
   constructor(private saveCityService: SaveCityService, private getWeatherIconService: GetWeatherIconService) {
   }
 
-  savedCities: any = []
+  savedCities: SavedCities[] = []
   @Input() mobileView: boolean = false
   faCloudRain = faCloudRain;
   faCloudBolt = faCloudBolt;

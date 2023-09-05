@@ -1,4 +1,5 @@
 import {Injectable,} from '@angular/core';
+import { SavedCities } from 'src/types/weatherData';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class SaveCityService {
   constructor() {
   }
 
-  savedCities: any = []
+  savedCities: SavedCities[] = []
 
   addCityToArr(weatherData:any,cityName:string){
     const combinedData = {...weatherData, cityName: cityName}
