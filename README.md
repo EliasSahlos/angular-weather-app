@@ -1,27 +1,40 @@
-# AngularWeatherApp
+# Angular-Weather App ☀️
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+This is a simple weather app created using Angular. It fetches weather data from the [OpenWeather API](https://openweathermap.org/) and displays basic information.
 
-## Development server
+You can view a live demo of the website deployed on Vercel by following this link: [Live Demo](https://angular-weather-app-omega.vercel.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- View current weather conditions for a specific location.
+- Display temperature, humidity, wind speed, and weather description.
+- Search for weather information for different locations.
+- Save and delete saved cities for quick access.
 
-## Code scaffolding
+## Technologies Used 💻
+- Angular
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Prerequisites
+- Node.js installed on your machine.
+- Angular CLI (if not installed, you can install it globally by running `npm install -g @angular/cli`)
 
-## Build
+## Installation ⚙️
+1. Clone the repository: ``git clone https://github.com/EliasSahlos/angular-weather-app.git``
+2. Navigate into the project directory: ``cd angular-weather-app ``
+3. Install dependencies: ``npm install``
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Configuration
+To fetch weather data, you'll need an API key from OpenWeather. Once you have the API key, create a `environments/environment.ts` file in the `src` directory and add your API key:
+```typescript
+export const environment = {
+production: false,
+apiKey: 'your-api-key-here'
+};
+```
 
-## Running unit tests
+## Usage 🚀
+- Start the development server: ``ng serve``
+- Open your browser and navigate to `http://localhost:4200` to view the website.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Author ✍️
+- Elias Sahlos
+- [Find me on Github](https://github.com/EliasSahlos/)
